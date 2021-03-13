@@ -75,4 +75,7 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  config.hosts << "c2d0ba52644b.ngrok.io"
+  config.web_console.whitelisted_ips = ['49.36.138.181','2405:201:400f:7b2f:ecac:eed0:2e91:ead6']
 end

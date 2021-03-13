@@ -8,16 +8,21 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    
+    <style>
+        .flash__alert   { color: red; }
+        .flash__notice  { color: blue; }
+        .flash__success { color: green; }
+    </style>
   </head>
 
   <body>
-    <% if notice %>
-      <p class="alert alert-success"><%= notice %></p>
+    <% if flash.any? %>
+      <% flash.each do |key, value| -%>
+        <section class="flash flash__<%= key %>"><%= value.html_safe %></section>
+      <% end -%>
     <% end %>
-    <% if alert %>
-      <p class="alert alert-danger"><%= alert %></p>
-    <% end %>
-
 
     <p class="navbar-text float-right">
       <% if user_signed_in? %>
@@ -39,3 +44,4 @@
     <%= yield %>
   </body>
 </html>
+
