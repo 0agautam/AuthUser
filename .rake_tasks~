@@ -37,6 +37,7 @@ db:setup
 db:structure:dump
 db:structure:load
 db:version
+fetch_prices
 log:clear
 middleware
 restart
