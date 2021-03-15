@@ -277,7 +277,8 @@ Devise.setup do |config|
   #for already logged in user
   config.omniauth :facebook, "267613474919550", "c3ea2d0a356db7a658a763661a84775c", scope: 'email', info_fields: 'email,name'
   
-  config.omniauth :google_oauth2, ENV['GOOGLE_OAUTH_CLIENT_ID'], ENV['GOOGLE_OAUTH_CLIENT_SECRET']
+  config.omniauth :google_oauth2, "363452089786-3q9s0meeuem0h3fvtf02jpbsukeavul2.apps.googleusercontent.com", "kXufOQZw6rY_mh4l6qFDaWhQ"
+  #ENV['GOOGLE_OAUTH_CLIENT_ID'], ENV['GOOGLE_OAUTH_CLIENT_SECRET']
   
   #config.omniauth :facebook, Rails.application.credentials.facebook[:APP_ID], Rails.application.credentials.facebook[:APP_SECRET], token_params: { parse: :json }
 

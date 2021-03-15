@@ -26,4 +26,10 @@ class User < ApplicationRecord
       # user.skip_confirmation!
     end
   end
+
+  def self.from_google(email:, name:, uid:)
+  return nil unless email =~ /@gmail.com\z/
+  password = Devise.friendly_token[0, 20]
+  create_with(uid: uid, name: name, password: password).find_or_create_by!(email: email)
+  end
 end
