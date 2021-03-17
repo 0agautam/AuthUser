@@ -10,7 +10,7 @@ task :fetch_schedules => :environment do
 
 
 
- month,match_date,match_name = [],[],[]
+ month = []
  count_month = 0
  count_days = 0
  month_i=0
@@ -27,21 +27,20 @@ task :fetch_schedules => :environment do
           sample_match_date = m_date.text.strip
           if /(\A[1]\s+?)/.match(match_date) === nil then
             puts "#{sample_match_date.concat(" ").concat(month[month_i])} "
-            CricInfo.create(month:month[month_i], match_date:match_date)
+            #CricInfo.create(month:month[month_i], match_date:match_date)
           else
            month_i +=1
            puts "#{sample_match_date.concat(" ").concat(month[month_i])} " 
-           CricInfo.create(month:month[month_i], match_date:match_date)
+           #CricInfo.create(month:month[month_i], match_date:match_date)
           end
 
-        CricInfo.where(match_name: nil).each do |object|
           m_day.css("section.calender-match-detail p.match-name").each do |match_name_detail|
             #match_name.push(match_name_detail.text.strip)
             match_name = match_name_detail.text.strip
-            object.update_attribute(:match_name, match_name)
+            CricInfo.create(month:month[month_i], match_date:match_date,match_name: match_name)
             puts match_name
           end
-        end  
+        
         end
       end
     end
