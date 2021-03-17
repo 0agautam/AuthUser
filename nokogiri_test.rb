@@ -16,6 +16,3 @@ doc.css(".col-xs-6").each do |item|
   puts "#{title} - #{price}"
 
 end
-
-
-

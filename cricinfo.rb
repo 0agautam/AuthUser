@@ -10,10 +10,6 @@ month = block.map { |element| element.text.strip  }
 puts month.size
 puts month.inspect
 
-# block = doc.css("section.calendar-match-list")
-# puts block.size
-# puts block
-
 
 match_date=[]
 match_series=[]

@@ -1,0 +1,2 @@
+class CricInfo < ApplicationRecord
+end
