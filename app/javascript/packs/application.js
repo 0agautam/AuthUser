@@ -8,6 +8,10 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
+//=require twitter/typeahead
+//=require jquery
+//=require jquery_ujs
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()

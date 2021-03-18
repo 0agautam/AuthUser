@@ -38,9 +38,12 @@ db:structure:dump
 db:structure:load
 db:version
 fetch_prices
+fetch_schedules
 log:clear
 middleware
 restart
+searchkick:reindex
+searchkick:reindex:all
 secret
 stats
 test

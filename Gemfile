@@ -64,3 +64,7 @@ gem "awesome_print"
 gem 'jquery-rails'
 
 gem 'omniauth-google-oauth2'
+
+gem 'searchkick'
+
+gem 'twitter-typeahead-rails'

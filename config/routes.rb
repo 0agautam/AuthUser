@@ -9,7 +9,14 @@ Rails.application.routes.draw do
   # devise_for :users, path: "auth", :controllers => {sessions: 'sessions', registrations: 'registrations', confirmations: 'confirmations', passwords: 'passwords', omniauth_callbacks: 'omniauth_callbacks'} 
 
   root "employees#index"
+   
   resources :employees
   resources :products 
+
+  resources :employees do
+    collection do
+      get :autocomplete
+    end
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

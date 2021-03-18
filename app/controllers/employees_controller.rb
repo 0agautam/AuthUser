@@ -3,7 +3,24 @@ class EmployeesController < ApplicationController
 
   # GET /employees or /employees.json
   def index
-    @employees = Employee.all
+    @q = params[:search_query]
+    if @q
+      #Employee.where("name ilike ?","%#{search}%")
+      puts "Your search is #{@q}"
+      @employees = Employee.search(@q, fields: ['name'], where: {doj: {gt: 2000}})
+    else
+      @employees = Employee.all
+    end
+  end
+
+  def autocomplete
+    render json: Employee.search(params[:search_query], {
+      fields: ["name^5"],
+      match: :word_start,
+      limit: 10,
+      load: false,
+      misspellings: {below: 5}
+    }).map(&:name)
   end
 
   # GET /employees/1 or /employees/1.json
@@ -64,6 +81,6 @@ class EmployeesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def employee_params
-      params.require(:employee).permit(:name, :email, :address)
+      params.require(:employee).permit(:name, :email, :address, :doj)
     end
 end
