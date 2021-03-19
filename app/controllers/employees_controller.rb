@@ -4,24 +4,25 @@ class EmployeesController < ApplicationController
   # GET /employees or /employees.json
   def index
     @q = params[:search_query]
-    if @q
+    @departments = Department.all
+    if @q.present? ? @q : nil
       #Employee.where("name ilike ?","%#{search}%")
       puts "Your search is #{@q}"
-      @employees = Employee.search(@q, fields: ['name'], where: {doj: {gt: 2000}})
+      @employees = Employee.search @q, fields: ["department_name","name"], match: :word_start
     else
       @employees = Employee.all
     end
   end
 
-  def autocomplete
-    render json: Employee.search(params[:search_query], {
-      fields: ["name^5"],
-      match: :word_start,
-      limit: 10,
-      load: false,
-      misspellings: {below: 5}
-    }).map(&:name)
-  end
+  # def autocomplete
+  #   render json: Employee.search(params[:search_query], {
+  #     fields: ["name^5"],
+  #     match: :word_start,
+  #     limit: 10,
+  #     load: false,
+  #     misspellings: {below: 5}
+  #   }).map(&:name)
+  # end
 
   # GET /employees/1 or /employees/1.json
   def show
@@ -30,6 +31,10 @@ class EmployeesController < ApplicationController
   # GET /employees/new
   def new
     @employee = Employee.new
+    @departments = Department.all
+    @departments.each do |dep|
+      puts "Department id is #{dep.name}"
+    end
   end
 
   # GET /employees/1/edit
@@ -81,6 +86,6 @@ class EmployeesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def employee_params
-      params.require(:employee).permit(:name, :email, :address, :doj)
+      params.require(:employee).permit(:name, :email, :address, :doj, :department_id)
     end
 end
